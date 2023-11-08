@@ -4,15 +4,31 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+//PAGES
+import Home from "./pages/Home";
+import Offer from "./pages/Offer";
+
+//COMPOSANTS
+import Header from "./components/Header";
+import Highlights from "./components/Highlights";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
+
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
       <Router>
-        <nav></nav>
+        <Header></Header>
+        <main>
+          <Hero></Hero>
+          <Highlights></Highlights>
+        </main>
+        <Footer></Footer>
         <Routes>
-          <Route></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/offer" element={<Offer />}></Route>
         </Routes>
       </Router>
     </>
