@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
+import Highlights from "../components/Highlights";
+import Hero from "../components/Hero";
 
-const Home = () => {
+const Home = ({ data, setData }) => {
   return (
-    <div>
-      <h1>Home</h1>
-      <Link to="/offer">Offer</Link>
-    </div>
+    <main>
+      <Hero></Hero>
+      <Highlights data={data} setData={setData}></Highlights>
+    </main>
   );
 };
 

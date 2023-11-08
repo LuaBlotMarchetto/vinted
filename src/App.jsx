@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import axios from "axios";
 import "./App.css";
 
 //PAGES
@@ -10,21 +9,35 @@ import Offer from "./pages/Offer";
 
 //COMPOSANTS
 import Header from "./components/Header";
-import Highlights from "./components/Highlights";
-import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://lereacteur-vinted-api.herokuapp.com/offers"
+        );
+        console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    <span>En cours de chargement...</span>
+  ) : (
     <>
       <Router>
         <Header></Header>
-        <main>
-          <Hero></Hero>
-          <Highlights></Highlights>
-        </main>
+        <Home data={data} setData={setData}></Home>
         <Footer></Footer>
         <Routes>
           <Route path="/" element={<Home />}></Route>

@@ -132,6 +132,36 @@ nav {
   font-size: 26px;
   margin-bottom: 20px;
 }
+.articles {
+  border: blue solid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.card {
+  border: orange solid;
+  width: 250px;
+}
+
+.card-seller {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-small-avatar {
+  height: 30px;
+  border-radius: 50%;
+}
+
+.card-image {
+  height: 350px;
+  width: 250px;
+  object-fit: cover;
+}
 
 /*FOOTER*/
 footer {
