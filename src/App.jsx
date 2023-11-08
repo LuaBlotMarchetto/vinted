@@ -36,13 +36,15 @@ function App() {
   ) : (
     <>
       <Router>
-        <Header></Header>
-        <Home data={data} setData={setData}></Home>
-        <Footer></Footer>
+        <Header />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/offer" element={<Offer />}></Route>
+          <Route path="/" element={<Home data={data} setData={setData} />} />
+          <Route
+            path="/offer/:id"
+            element={<Offer data={data} setData={setData} />}
+          />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
