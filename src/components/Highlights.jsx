@@ -23,7 +23,7 @@ const Highlights = (props) => {
               return (
                 <Link to={`/offer/${offer._id}`} key={offer._id}>
                   <div className="card">
-                    <div className="card-seller">
+                    <div className="card-seller-highlights">
                       <img
                         src={offer.owner.account.avatar.url}
                         alt=""

@@ -4,7 +4,7 @@ body {
 
 .container {
   display: flex;
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   padding-left: 30px;
   justify-content: flex-start;
@@ -146,12 +146,12 @@ nav {
   width: 250px;
 }
 
-.card-seller {
+.card-seller-highlights {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  /* border: purple solid; */
+  border: purple solid;
 }
 
 .card-small-avatar {
@@ -170,24 +170,26 @@ nav {
 
 .product-background {
   background-color: #eaedee;
+  /* width: 100%; */
 }
 
-.product-main {
+.product-container {
   /* border: blue solid; */
   display: flex;
-  margin: 25px auto;
-  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  justify-content: space-evenly;
   height: 665px;
-  padding: 0;
+  width: 1340px;
+  padding: 30px 0;
 }
 .product-card {
   /* border: red solid; */
   background-color: white;
   padding: 40px;
   width: 400px;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 .product-image {
@@ -196,11 +198,12 @@ nav {
   object-fit: cover;
 }
 
-.product-card div {
+.product-card-content {
   /* border: orange solid; */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  /* gap: 10px; */
   margin: 2px 0;
 }
 
@@ -216,29 +219,56 @@ nav {
 
 .product-card button {
   height: 50px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   color: white;
   background-color: #177782;
 }
 
-.product-card div div div {
+.product-info {
+  /* border: turquoise solid; */
+  display: flex;
+  font-weight: 100;
+}
+
+.product-card-infos {
   /* border: purple solid; */
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 350px;
-  /* margin: 0 auto; */
+  flex-direction: column;
+  gap: 5px;
+}
+
+.product-card-labels {
+  /* border: green solid; */
+  display: flex;
+  flex-direction: column;
+  color: #c7c1c1;
+  gap: 5px;
+}
+
+/* .product-card div div div p {
   font-size: 14px;
+} */
+
+.card-seller-offer {
+  /* border: yellow solid; */
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .product-card h3 {
   font-size: 24px;
   font-weight: 500;
+  margin-bottom: 15px;
 }
 .product-card h4 {
   font-size: 16px;
   font-weight: 600;
+  margin-bottom: 15px;
+  border-top: #eaedee 1px solid;
+  padding-top: 25px;
 }
 .product-card p {
   font-size: 14px;
