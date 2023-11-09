@@ -14,7 +14,7 @@ body {
 /*HEADER*/
 header {
   border-bottom: rgb(241, 241, 241) solid 1px;
-  height: 50px;
+  height: 70px;
   align-items: center;
   display: flex;
   font-size: 40px;
@@ -272,6 +272,41 @@ nav {
 }
 .product-card p {
   font-size: 14px;
+}
+
+/*SIGNUP*/
+.signup-content {
+  /* border: red solid; */
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: 50px auto 350px;
+  padding: 20px;
+  align-items: center;
+}
+
+.signup-content form {
+  /* border: green solid; */
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  width: 75%;
+  gap: 20px;
+}
+.signup-content form input {
+  /* margin-top: 15px; */
+  border: none;
+  border-bottom: #177782 1px solid;
+  padding-bottom: 5px;
+}
+
+.signup-content button {
+  height: 50px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #177782;
 }
 
 /*FOOTER*/

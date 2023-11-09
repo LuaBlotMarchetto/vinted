@@ -24,11 +24,13 @@ const Highlights = (props) => {
                 <Link to={`/offer/${offer._id}`} key={offer._id}>
                   <div className="card">
                     <div className="card-seller-highlights">
-                      <img
-                        src={offer.owner.account.avatar.url}
-                        alt=""
-                        className="card-small-avatar"
-                      />
+                      {offer.owner?.account?.avatar?.url && (
+                        <img
+                          src={offer.owner.account.avatar.url}
+                          alt=""
+                          className="card-small-avatar"
+                        />
+                      )}
                       <p>{offer.owner.account.username}</p>
                     </div>
                     <img
