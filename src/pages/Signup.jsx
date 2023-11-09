@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newsletterOptin, setNewsletterOptin] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -26,11 +30,9 @@ const Signup = () => {
       const token = response.data.token;
       Cookies.set("token", token);
 
-      //remise à zéro du formulaire
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setNewsletterOptin(false);
+      //modification de l'état de connexion et redirection
+      setConnected(true);
+      navigate("/");
     } catch (error) {
       console.error(error.response.data);
     }

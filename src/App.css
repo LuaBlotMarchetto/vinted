@@ -37,6 +37,10 @@ header button {
   height: 35px;
 }
 
+.signout {
+  background-color: red;
+}
+
 header input {
   padding: 5px 15px;
   border-radius: 5px;
