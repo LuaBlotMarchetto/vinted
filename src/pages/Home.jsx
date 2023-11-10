@@ -1,34 +1,22 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
 import Highlights from "../components/Highlights";
 import Hero from "../components/Hero";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
-        );
-        console.log(response.data);
-        setData(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
-  }, []);
+  const { limit, page } = useParams();
 
-  return isLoading ? (
-    <span>En cours de chargement...</span>
-  ) : (
+  return (
     <main>
       <Hero></Hero>
-      <Highlights data={data} setData={setData}></Highlights>
+      <Highlights
+        data={data}
+        setData={setData}
+        limit={limit}
+        page={page}
+      ></Highlights>
     </main>
   );
 };
