@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import Cookies from "js-cookie";
 
-const Login = () => {
+const Login = ({ handleToken }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,37 +23,45 @@ const Login = () => {
       );
 
       //Mise en cookie du token
-      const token = response.data.token;
-      Cookies.set("token", token);
+      handleToken(response.data.token);
 
       //remise à zéro du formulaire
       navigate("/");
     } catch (error) {
+      if (error.response.status === 400) {
+        setErrorMessage("Aucun compte trouvé pour cette adresse email");
+      }
       console.error(error.response.data);
     }
   };
 
   return (
-    <div className="container signup-content">
-      <h2>Se connecter</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button type="Submit">Se connecter</button>
-      </form>
-      <p>Pas encore de compte ? Inscris-toi!</p>
-    </div>
+    <main>
+      <div className="container signup-content">
+        <h2>Se connecter</h2>
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <p className="connexion-error-message">{errorMessage}</p>
+          <button type="Submit">Se connecter</button>
+        </form>
+        <Link to="/signup">
+          <p className="connexion-redirection">
+            Pas encore de compte ? Inscris-toi!
+          </p>
+        </Link>
+      </div>
+    </main>
   );
 };
 

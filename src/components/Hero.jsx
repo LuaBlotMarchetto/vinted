@@ -1,14 +1,16 @@
 const Hero = () => {
   return (
     <section className="hero">
-      {/* <img src="src/assets/images/hero-image-1.jpg" alt="" /> */}
       <div className="container">
-        <div>
-          <h2>Prêts à faire du tri dans vos placards?</h2>
+        <div className="hero-container">
+          <div>
+            <h2>Prêts à faire du tri dans vos placards?</h2>
+          </div>
+          <button>Commencer à vendre</button>
+          <p>Découvrir comment ça marche</p>
         </div>
-        <button>Commencer à vendre</button>
-        <p>Découvrir comment ça marche</p>
       </div>
+      <img src="src/assets/images/tear.svg" alt="" />
     </section>
   );
 };

@@ -4,6 +4,9 @@ const Highlights = (props) => {
   return (
     <div className="container ">
       <div className=" highlights">
+        <div>
+          <h2>Explorez les articles</h2>
+        </div>
         <div className="filters">
           <div>
             <p>Trier par prix</p>
@@ -15,18 +18,21 @@ const Highlights = (props) => {
           </div>
         </div>
         <div>
-          <div>
-            <h2>Explorez les articles</h2>
-          </div>
           <div className="articles">
             {props.data.offers.map((offer) => {
               return (
                 <Link to={`/offer/${offer._id}`} key={offer._id}>
                   <div className="card">
                     <div className="card-seller-highlights">
-                      {offer.owner?.account?.avatar?.url && (
+                      {offer.owner?.account?.avatar?.url ? (
                         <img
                           src={offer.owner.account.avatar.url}
+                          alt=""
+                          className="card-small-avatar"
+                        />
+                      ) : (
+                        <img
+                          src="src/assets/images/empty-avatar.jpg"
                           alt=""
                           className="card-small-avatar"
                         />
@@ -38,7 +44,7 @@ const Highlights = (props) => {
                       alt=""
                       className="card-image"
                     />
-                    <div>
+                    <div className="card-product-info">
                       <p>{offer.product_price} €</p>
                       <p>{offer.product_details[1].TAILLE}</p>
                       <p>{offer.product_details[0].MARQUE}</p>

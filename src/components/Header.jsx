@@ -1,11 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Cookies from "js-cookie";
 
-const Header = () => {
+const Header = ({ token, handleToken }) => {
   const navigate = useNavigate();
-  const token = Cookies.get("token");
-  const [connected, setConnected] = useState(token ? true : false);
 
   return (
     <header>
@@ -28,8 +24,7 @@ const Header = () => {
           {token ? (
             <button
               onClick={() => {
-                Cookies.remove("token");
-                setConnected(false);
+                handleToken(null);
                 navigate("/");
               }}
               className="signout"

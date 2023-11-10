@@ -1,31 +1,45 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: relative;
+}
+
+main {
+  /* height: 800px; */
 }
 
 .container {
   display: flex;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding-left: 30px;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   /* border: blue solid; */
 }
 
 /*HEADER*/
 header {
   border-bottom: rgb(241, 241, 241) solid 1px;
-  height: 70px;
+  height: 60px;
   align-items: center;
   display: flex;
+  justify-content: space-between;
   font-size: 40px;
   letter-spacing: 3px;
   padding: 10px 0;
+  /* position: fixed; */
+  width: 100%;
+  background-color: white;
+  /* border: red solid; */
 }
 
 header div {
   display: flex;
   gap: 60px;
   margin-left: 120px;
+  align-items: center;
+  justify-content: space-between;
+  /* border: green solid; */
+  width: 100%;
 }
 
 header button {
@@ -35,10 +49,13 @@ header button {
   color: white;
   border-radius: 5px;
   height: 35px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .signout {
-  background-color: red;
+  background-color: #c2175b;
+  margin-top: 14px;
 }
 
 header input {
@@ -51,7 +68,7 @@ header input {
 }
 nav {
   display: flex;
-  gap: 15px;
+  /* border: orange solid; */
 }
 
 /*HERO*/
@@ -62,12 +79,23 @@ nav {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px;
+  height: 600px;
   display: flex;
   align-items: center;
+  /* border: green solid; */
+  position: relative;
 }
 
-.hero > div {
+.hero .container {
+  /* border: blue solid; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.hero-container {
   background-color: white;
   height: 300px;
   width: 450px;
@@ -77,13 +105,21 @@ nav {
   padding: 40px;
   box-sizing: border-box;
   justify-content: space-between;
+  /* border: red solid; */
+  /* margin: 0 auto; */
+}
+
+.hero img {
+  align-self: end;
+  position: absolute;
+  right: 0;
 }
 
 .hero h2 {
   font-size: 32px;
 }
 
-.hero div div {
+.hero-container div {
   width: 75%;
 }
 
@@ -131,11 +167,12 @@ nav {
   max-width: 1200px;
   margin: 30px 0;
   gap: 15px;
+  margin-bottom: 100px;
 }
 
 .highlights h2 {
   font-size: 26px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .articles {
   /* border: blue solid; */
@@ -147,7 +184,11 @@ nav {
 
 .card {
   /* border: orange solid; */
-  width: 250px;
+  width: 210px;
+  margin-bottom: 30px;
+  font-size: 12px;
+  font-weight: 200;
+  color: grey;
 }
 
 .card-seller-highlights {
@@ -155,19 +196,30 @@ nav {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  border: purple solid;
+  /* border: purple solid; */
 }
 
 .card-small-avatar {
   height: 30px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left: 5px;
 }
 
 .card-image {
   height: 350px;
-  width: 250px;
+  width: 100%;
   object-fit: cover;
+}
+
+.card-product-info {
+  margin-top: 10px;
+  line-height: 1.2;
+}
+
+.card-product-info > p:first-child {
+  font-size: 14px;
+  color: black;
 }
 
 /*OFFER*/
@@ -287,6 +339,7 @@ nav {
   margin: 50px auto 350px;
   padding: 20px;
   align-items: center;
+  font-size: 14px;
 }
 
 .signup-content form {
@@ -297,10 +350,15 @@ nav {
   width: 75%;
   gap: 20px;
 }
+
+.signup-content h2 {
+  font-size: 18px;
+}
+
 .signup-content form input {
   /* margin-top: 15px; */
   border: none;
-  border-bottom: #177782 1px solid;
+  border-bottom: #d7841d 1px solid;
   padding-bottom: 5px;
 }
 
@@ -313,14 +371,30 @@ nav {
   background-color: #177782;
 }
 
+.connexion-error-message {
+  color: #c2175b;
+  font-size: 12px;
+}
+
+.newsletter-terms {
+  font-size: 10px;
+  margin-top: 10px;
+}
+.connexion-redirection {
+  color: #177782;
+  text-decoration: underline;
+}
 /*FOOTER*/
 footer {
   display: flex;
   justify-content: center;
   background-color: #f2f2f2;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 footer div {
-  padding: 50px;
+  padding: 30px;
   display: flex;
   flex-direction: row;
 }
