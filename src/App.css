@@ -419,6 +419,34 @@ nav {
   color: #177782;
   text-decoration: underline;
 }
+
+/*PUBLISH*/
+
+.publish {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo-upload {
+  border: red solid;
+  margin: 15px auto;
+  padding: 20px;
+}
+
+#upload-photo-input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.add-photo-button {
+  border: #177782 solid 1px;
+  margin: 10px;
+  padding: 5px 15px;
+  color: #177782;
+  border-radius: 5px;
+}
+
 /*FOOTER*/
 footer {
   display: flex;

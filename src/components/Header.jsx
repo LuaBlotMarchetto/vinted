@@ -39,9 +39,15 @@ const Header = ({ token, handleToken, search, setSearch }) => {
             </button>
           ) : null}
 
-          <Link to="/login">
-            <button>Vends tes articles</button>
-          </Link>
+          {token ? (
+            <Link to="/publish">
+              <button>Vends tes articles</button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button>Vends tes articles</button>
+            </Link>
+          )}
         </nav>
       </div>
     </header>
