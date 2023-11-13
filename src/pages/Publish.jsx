@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const Publish = () => {
+const Publish = ({ token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -13,7 +13,6 @@ const Publish = () => {
   const [picture, setPicture] = useState(null);
   const [pictureFromCloudinary, setPictureFromCloudinary] = useState();
   //   const [publishOptin, setPublishOptin] = useState(false);
-  const [token, setToken] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handlePublish = async (e) => {
@@ -45,7 +44,6 @@ const Publish = () => {
         }
       );
 
-      setToken(response.data.token);
       console.log(formData);
       setPictureFromCloudinary(response.data.secure_url);
       setTitle("");
