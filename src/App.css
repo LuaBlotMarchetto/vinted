@@ -1,10 +1,11 @@
 body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   position: relative;
+  /* background-color: #ecedee; */
 }
 
 main {
-  min-height: 800px;
+  min-height: 1200px;
 }
 
 .container {
@@ -422,15 +423,44 @@ nav {
 
 /*PUBLISH*/
 
+.main-publish {
+  /* background-color: #c7c1c1; */
+}
+
+.publish-card {
+  display: flex;
+  flex-direction: column;
+  border: #c7c1c1 solid 1px;
+  width: 100%;
+  /* padding: 20px; */
+}
+
+.publish-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: #c7c1c1 solid 1px;
+}
+
 .publish {
   display: flex;
   flex-direction: column;
+  border: blue solid;
+  margin: 40px auto;
+  gap: 25px;
 }
 
 .photo-upload {
-  border: red solid;
+  display: flex;
+  flex-direction: column;
+
   margin: 15px auto;
   padding: 20px;
+}
+
+.picture-display {
+  width: 300px;
 }
 
 #upload-photo-input {
@@ -442,9 +472,25 @@ nav {
 .add-photo-button {
   border: #177782 solid 1px;
   margin: 10px;
-  padding: 5px 15px;
+  padding: 10px 25px;
   color: #177782;
   border-radius: 5px;
+  width: 200px;
+  align-self: center;
+  margin: 40px auto;
+}
+
+.publish-button {
+  border: none;
+  background-color: #177782;
+  color: white;
+  border-radius: 5px;
+  height: 45px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 80px;
+  margin-top: 40px;
+  align-self: flex-end;
 }
 
 /*FOOTER*/

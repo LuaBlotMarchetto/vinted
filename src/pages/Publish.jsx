@@ -11,9 +11,11 @@ const Publish = ({ token }) => {
   const [price, setPrice] = useState("");
   const [city, setCity] = useState("");
   const [picture, setPicture] = useState(null);
-  const [pictureFromCloudinary, setPictureFromCloudinary] = useState();
+  //   const [pictureFromCloudinary, setPictureFromCloudinary] = useState();
   //   const [publishOptin, setPublishOptin] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  let pictureToDisplay;
 
   const handlePublish = async (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ const Publish = ({ token }) => {
     try {
       setErrorMessage("");
 
+      console.log(pictureToDisplay);
       const formData = new FormData();
       formData.append("title", title);
       formData.append("description", description);
@@ -45,7 +48,8 @@ const Publish = ({ token }) => {
       );
 
       console.log(formData);
-      setPictureFromCloudinary(response.data.secure_url);
+      setPicture(response.data.secure_url);
+      //   setPictureFromCloudinary(response.data.secure_url);
       setTitle("");
       setDescription("");
       setBrand("");
@@ -62,13 +66,17 @@ const Publish = ({ token }) => {
     }
   };
 
+  if (picture) {
+    pictureToDisplay = URL.createObjectURL(picture);
+  }
+
   return (
-    <main>
+    <main className="main-publish">
       <form className="container publish" onSubmit={handlePublish}>
         <h1>Vends ton article</h1>
-        <div className="photo-upload">
+        <div className="photo-upload publish-card">
           <label htmlFor="upload-photo-input" className="add-photo-button">
-            Ajoute une photo
+            + Ajoute une photo
           </label>
           <input
             type="file"
@@ -78,12 +86,16 @@ const Publish = ({ token }) => {
               setPicture(event.target.files[0]);
             }}
           />
-          {pictureFromCloudinary && (
-            <img src={pictureFromCloudinary} alt="XXXXX"></img>
+          {pictureToDisplay && (
+            <img
+              src={pictureToDisplay}
+              alt="XXXXX"
+              className="picture-display"
+            ></img>
           )}
         </div>
-        <div>
-          <div>
+        <div className="publish-card">
+          <div className="publish-section">
             <h3>Titre</h3>
             <input
               type="text"
@@ -92,7 +104,7 @@ const Publish = ({ token }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div>
+          <div className="publish-section">
             <h3>Décris ton article</h3>
             <input
               type="text"
@@ -102,8 +114,8 @@ const Publish = ({ token }) => {
             />
           </div>
         </div>
-        <div>
-          <div>
+        <div className="publish-card">
+          <div className="publish-section">
             <h3>Marque</h3>
             <input
               type="text"
@@ -112,7 +124,7 @@ const Publish = ({ token }) => {
               onChange={(e) => setBrand(e.target.value)}
             />
           </div>
-          <div>
+          <div className="publish-section">
             <h3>Taille</h3>
             <input
               type="text"
@@ -121,7 +133,7 @@ const Publish = ({ token }) => {
               onChange={(e) => setSize(e.target.value)}
             />
           </div>
-          <div>
+          <div className="publish-section">
             <h3>Couleur</h3>
             <input
               type="text"
@@ -130,7 +142,7 @@ const Publish = ({ token }) => {
               onChange={(e) => setColor(e.target.value)}
             />
           </div>
-          <div>
+          <div className="publish-section">
             <h3>Etat</h3>
             <input
               type="text"
@@ -139,7 +151,7 @@ const Publish = ({ token }) => {
               onChange={(e) => setCondition(e.target.value)}
             />
           </div>
-          <div>
+          <div className="publish-section">
             <h3>Lieu</h3>
             <input
               type="text"
@@ -149,8 +161,8 @@ const Publish = ({ token }) => {
             />
           </div>
         </div>
-        <div>
-          <div>
+        <div className="publish-card">
+          <div className="publish-section">
             <h3>Prix</h3>
             <input
               type="text"
@@ -159,19 +171,23 @@ const Publish = ({ token }) => {
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
-          <input
-            type="checkbox"
-            id="publish-optin"
-            name="publish-optin"
-            // checked={publishOptin}
-            // onChange={(e) => setPublishOptin(e.target.checked)}
-          />
-          <label htmlFor="publish-optin">
-            Je suis intéressé(e) par les échanges
-          </label>
+          <div className="publish-section">
+            <input
+              type="checkbox"
+              id="publish-optin"
+              name="publish-optin"
+              // checked={publishOptin}
+              // onChange={(e) => setPublishOptin(e.target.checked)}
+            />
+            <label htmlFor="publish-optin">
+              Je suis intéressé(e) par les échanges
+            </label>
+          </div>
         </div>
         <p className="connexion-error-message">{errorMessage}</p>
-        <button type="submit">Ajouter</button>
+        <button type="submit" className="publish-button">
+          Ajouter
+        </button>
       </form>
     </main>
   );
