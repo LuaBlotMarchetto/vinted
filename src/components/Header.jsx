@@ -1,15 +1,21 @@
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({ token, handleToken }) => {
+const Header = ({ token, handleToken, search, setSearch }) => {
   const navigate = useNavigate();
-
   return (
     <header>
       <div className="container">
         <Link to="/">
           <img src="src/assets/images/logo.svg" alt="" />
         </Link>
-        <input type="text" placeholder="Recherche des articles" />
+        <input
+          type="text"
+          placeholder="Recherche des articles"
+          value={search}
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
         <nav>
           {!token ? (
             <Link to="/signup">
@@ -33,7 +39,7 @@ const Header = ({ token, handleToken }) => {
             </button>
           ) : null}
 
-          <Link to="/signup">
+          <Link to="/login">
             <button>Vends tes articles</button>
           </Link>
         </nav>

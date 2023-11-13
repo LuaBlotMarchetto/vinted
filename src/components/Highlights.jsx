@@ -1,16 +1,46 @@
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Highlights = (props) => {
-  const { page, limit } = useParams();
-
-  const [currentPage, setCurrentPage] = useState(page || 1);
-  const [totalPages, setTotalPages] = useState(1);
-
+const Highlights = ({ search }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [sort, setSort] = useState("price-asc");
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(2000);
+
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://lereacteur-vinted-api.herokuapp.com/offers?` +
+            (search !== undefined ? `&title=${search}` : "") +
+            (page !== undefined ? `&page=${page}` : "") +
+            (limit !== undefined ? `&limit=${limit}` : "") +
+            (sort !== undefined ? `&sort=${sort}` : "") +
+            (priceMin !== undefined ? `&priceMin=${priceMin}` : "") +
+            (priceMax !== undefined ? `&priceMax=${priceMax}` : "")
+        );
+        setData(response.data);
+        setIsLoading(false);
+        setTotalPages(Math.ceil(response.data.count / limit));
+
+        // const pageNumber = [];
+        // for (let index = 0; index < totalPages; index++) {
+        //   const number = index + 1;
+        //   pageNumber.push(number);
+        // }
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+    fetchData();
+  }, [search, page, limit, sort, priceMin, priceMax, totalPages]);
 
   const pageNumber = [];
   for (let index = 0; index < totalPages; index++) {
@@ -18,30 +48,8 @@ const Highlights = (props) => {
     pageNumber.push(number);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (page && limit) {
-          const response = await axios.get(
-            `https://lereacteur-vinted-api.herokuapp.com/offers?page=${currentPage}&limit=${limit}`
-          );
-          setData(response.data);
-          setIsLoading(false);
-          setTotalPages(Math.ceil(response.data.count / limit));
-        } else {
-          const response = await axios.get(
-            "https://lereacteur-vinted-api.herokuapp.com/offers"
-          );
-          setData(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.log(error.response);
-      }
-    };
-    fetchData();
-  }, [currentPage, limit, page]);
-
+  console.log(page);
+  // console.log(number);
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
@@ -53,11 +61,45 @@ const Highlights = (props) => {
         <div className="filters">
           <div>
             <p>Trier par prix</p>
-            <button>tri</button>
+            <select
+              value={sort}
+              onChange={(event) => {
+                setSort(event.target.value);
+              }}
+            >
+              <option value="price-asc">Par prix croissant</option>
+              <option value="price-desc">Par prix décroissant</option>
+            </select>
           </div>
           <div>
             <p>Prix entre</p>
-            <button>barre de tri</button>
+            <input
+              type="number"
+              placeholder="prix min"
+              value={priceMin}
+              onChange={(event) => {
+                setPriceMin(event.target.value);
+              }}
+            />
+            <input
+              type="number"
+              placeholder="prix max"
+              value={priceMax}
+              onChange={(event) => {
+                setPriceMax(event.target.value);
+              }}
+            />
+          </div>
+          <div>
+            <p>Nombre d'articles par page</p>
+            <input
+              type="number"
+              placeholder="ex: 10"
+              value={limit}
+              onChange={(event) => {
+                setLimit(event.target.value);
+              }}
+            />
           </div>
         </div>
         <div>
@@ -99,7 +141,13 @@ const Highlights = (props) => {
           </div>
           <div className="pagination">
             {pageNumber.map((number) => (
-              <button key={number} onClick={() => setCurrentPage(number)}>
+              <button
+                key={number}
+                onClick={() => {
+                  setPage(number);
+                }}
+                className={number === page ? "current-page" : ""}
+              >
                 {number}
               </button>
             ))}
