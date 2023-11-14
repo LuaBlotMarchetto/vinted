@@ -12,7 +12,9 @@ const Hero = () => {
             <button>Commencer à vendre</button>
           </Link>
 
-          <p>Découvrir comment ça marche</p>
+          <a href="https://github.com/LuaBlotMarchetto" target="_blank">
+            Découvrir comment ça marche
+          </a>
         </div>
       </div>
       <img src="src/assets/images/tear.svg" alt="" />

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Signup = ({ handleToken }) => {
+  document.body.style.backgroundColor = "white";
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");

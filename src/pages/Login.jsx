@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ handleToken }) => {
+  document.body.style.backgroundColor = "white";
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,9 +30,10 @@ const Login = ({ handleToken }) => {
       //remise à zéro du formulaire
       navigate("/");
     } catch (error) {
-      if (error.response.status === 400) {
-        setErrorMessage("Aucun compte trouvé pour cette adresse email");
+      if (error.response.status === 400 || error.response.status === 401) {
+        setErrorMessage("Adresse email ou mot de passe érronné(s)");
       }
+
       console.error(error.response.data);
     }
   };

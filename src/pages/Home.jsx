@@ -4,10 +4,7 @@ import Hero from "../components/Hero";
 import { useParams } from "react-router-dom";
 
 const Home = ({ search }) => {
-  // const [data, setData] = useState();
-
-  // const { limit, page } = useParams();
-
+  document.body.style.backgroundColor = "white";
   return (
     <main>
       <Hero></Hero>

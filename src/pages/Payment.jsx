@@ -9,18 +9,20 @@ const stripePromise = loadStripe(
 );
 
 const Payment = ({ token }) => {
+  document.body.style.backgroundColor = "#EAEDEE";
+
   const location = useLocation();
   const { title } = location.state;
   const { price } = location.state;
 
-  let deliveryFees = price / 5;
-  let protectionFees = price / 10;
+  let deliveryFees = Math.round(price / 5);
+  let protectionFees = Math.round(price / 10);
   let total = price + deliveryFees + protectionFees;
 
   return token ? (
     <main>
       <div className="payment-container">
-        <div>
+        <div className="grey-font">
           <div>
             <h3> Résumé de la commande</h3>
           </div>

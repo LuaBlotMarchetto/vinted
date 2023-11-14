@@ -53,7 +53,7 @@ const Highlights = ({ search }) => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div className="container ">
+    <div className="container white-background">
       <div className=" highlights">
         <div>
           <h2>Explorez les articles</h2>

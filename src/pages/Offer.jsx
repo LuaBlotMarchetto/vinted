@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const Offer = ({ token }) => {
+  document.body.style.backgroundColor = "#EAEDEE";
+
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
@@ -88,6 +90,7 @@ const Offer = ({ token }) => {
                     state={{
                       title: offerToDisplay.product_name,
                       price: offerToDisplay.product_price,
+                      name: offerToDisplay.owner.account.username,
                     }}
                   >
                     <button>Acheter</button>

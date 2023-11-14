@@ -14,6 +14,7 @@ const Header = ({ token, handleToken, search, setSearch }) => {
           value={search}
           onChange={(event) => {
             setSearch(event.target.value);
+            // navigate("/");
           }}
         />
         <nav>

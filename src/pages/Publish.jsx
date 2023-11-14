@@ -3,6 +3,8 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
+  document.body.style.backgroundColor = "#EAEDEE";
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -192,7 +194,7 @@ const Publish = ({ token }) => {
       </form>
     </main>
   ) : (
-    <Navigate to="login" />
+    <Navigate to="/login" />
   );
 };
 
