@@ -68,7 +68,7 @@ const Signup = ({ handleToken }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <p className="connexion-error-message">{errorMessage}</p>
+          <p className="error-message">{errorMessage}</p>
           <div>
             <input
               type="checkbox"

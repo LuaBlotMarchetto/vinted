@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [title, setTitle] = useState("");
@@ -70,7 +71,7 @@ const Publish = ({ token }) => {
     pictureToDisplay = URL.createObjectURL(picture);
   }
 
-  return (
+  return token ? (
     <main className="main-publish">
       <form className="container publish" onSubmit={handlePublish}>
         <h1>Vends ton article</h1>
@@ -99,16 +100,16 @@ const Publish = ({ token }) => {
             <h3>Titre</h3>
             <input
               type="text"
-              placeholder="ex:Chemise Sézane verte"
+              placeholder="ex: Chemise Sézane verte"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="publish-section">
             <h3>Décris ton article</h3>
-            <input
+            <textarea
               type="text"
-              placeholder="ex:porté quelques fois, taille correctement"
+              placeholder="ex: porté quelques fois, taille correctement"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -119,7 +120,7 @@ const Publish = ({ token }) => {
             <h3>Marque</h3>
             <input
               type="text"
-              placeholder="ex:Zara"
+              placeholder="ex: Zara"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
             />
@@ -128,7 +129,7 @@ const Publish = ({ token }) => {
             <h3>Taille</h3>
             <input
               type="text"
-              placeholder="ex:L/40/12"
+              placeholder="ex: L/40/12"
               value={size}
               onChange={(e) => setSize(e.target.value)}
             />
@@ -137,7 +138,7 @@ const Publish = ({ token }) => {
             <h3>Couleur</h3>
             <input
               type="text"
-              placeholder="ex:Fushia"
+              placeholder="ex: Fushia"
               value={color}
               onChange={(e) => setColor(e.target.value)}
             />
@@ -146,7 +147,7 @@ const Publish = ({ token }) => {
             <h3>Etat</h3>
             <input
               type="text"
-              placeholder="ex:Neuf avec étiquette"
+              placeholder="ex: Neuf avec étiquette"
               value={condition}
               onChange={(e) => setCondition(e.target.value)}
             />
@@ -155,7 +156,7 @@ const Publish = ({ token }) => {
             <h3>Lieu</h3>
             <input
               type="text"
-              placeholder="ex:Paris"
+              placeholder="ex: Paris"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
@@ -166,12 +167,12 @@ const Publish = ({ token }) => {
             <h3>Prix</h3>
             <input
               type="text"
-              placeholder="ex:0,00€"
+              placeholder="ex: 0,00€"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
-          <div className="publish-section">
+          <div className="publish-section checkbox-publish">
             <input
               type="checkbox"
               id="publish-optin"
@@ -184,12 +185,14 @@ const Publish = ({ token }) => {
             </label>
           </div>
         </div>
-        <p className="connexion-error-message">{errorMessage}</p>
+        <p className="error-message">{errorMessage}</p>
         <button type="submit" className="publish-button">
           Ajouter
         </button>
       </form>
     </main>
+  ) : (
+    <Navigate to="login" />
   );
 };
 
